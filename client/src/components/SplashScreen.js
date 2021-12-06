@@ -6,12 +6,6 @@ export default function SplashScreen() {
             Lister
             <br />
             Eddie Zhu
-            <br />
-            <button>Log In</button>
-            <br />
-            <button>Sign Up</button>
-            <br />
-            <button>Log In As Guest</button>
             
             
         </div>
