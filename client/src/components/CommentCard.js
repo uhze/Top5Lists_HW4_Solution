@@ -6,8 +6,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import TextField from '@mui/material/TextField';
-import ThumbUp from '@mui/icons-material/ThumbUp';
-import ThumbDown from '@mui/icons-material/ThumbDown';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -16,18 +14,18 @@ import ThumbDown from '@mui/icons-material/ThumbDown';
     
     @author McKilla Gorilla
 */
-function ListCard(props) {
+function CommentCard(props) {
     const { store } = useContext(GlobalStoreContext);
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
     const { idNamePair, selected } = props;
 
-    function handleLoadList(event, id) {
-        console.log("handleLoadList for " + id);
+    function handleLoadComment(event, id) {
+        console.log("handleLoadComment for " + id);
         if (!event.target.disabled) {
             let _id = event.target.id;
-            if (_id.indexOf('list-card-text-') >= 0)
-                _id = ("" + _id).substring("list-card-text-".length);
+            if (_id.indexOf('comment-card-text-') >= 0)
+                _id = ("" + _id).substring("comment-card-text-".length);
 
             console.log("load " + event.target.id);
 
@@ -102,16 +100,6 @@ function ListCard(props) {
                     }} aria-label='delete'>
                         <DeleteIcon style={{fontSize:'48pt'}} />
                     </IconButton>
-                    <IconButton onClick={(event) => {
-                        
-                    }} aria-label='thumbup'>
-                        <ThumbUp style={{fontSize:'48pt'}}></ThumbUp>
-                    </IconButton>
-                    <IconButton onClick={(event) => {
-                        
-                    }} aria-label='thumbdown'>
-                        <ThumbDown style={{fontSize:'48pt'}}></ThumbDown>
-                    </IconButton>
                 </Box>
         </ListItem>
 
@@ -139,4 +127,4 @@ function ListCard(props) {
     );
 }
 
-export default ListCard;
+export default CommentCard;

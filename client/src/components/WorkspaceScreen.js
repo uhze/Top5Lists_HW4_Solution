@@ -36,10 +36,14 @@ function WorkspaceScreen() {
                     <div className="item-number"><Typography variant="h3">3.</Typography></div>
                     <div className="item-number"><Typography variant="h3">4.</Typography></div>
                     <div className="item-number"><Typography variant="h3">5.</Typography></div>
+                    
                 </div>
                 {editItems}
+
             </div>
+
         </div>
+        
     )
 }
 

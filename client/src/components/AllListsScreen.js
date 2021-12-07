@@ -1,46 +1,55 @@
-import { useContext } from 'react'
-import Top5Item from './Top5Item.js'
+import React, { useContext, useEffect } from 'react'
+import { GlobalStoreContext } from '../store'
+import ListCard from './ListCard.js'
+import DeleteModal from './DeleteModal'
+
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab'
 import List from '@mui/material/List';
-import { Typography } from '@mui/material'
-import { GlobalStoreContext } from '../store/index.js'
+import Typography from '@mui/material/Typography'
 /*
-    This React component lets us edit a loaded list, which only
-    happens when we are on the proper route.
+    This React component lists all the top5 lists in the UI.
     
     @author McKilla Gorilla
 */
-function AllListsScreen() {
+const AllListsScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
-    let editItems = "";
-    if (store.currentList) {
-        editItems = 
-            <List id="edit-items" sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                {
-                    store.currentList.items.map((item, index) => (
-                        <Top5Item 
-                            key={'top5-item-' + (index+1)}
-                            text={item}
-                            index={index} 
-                        />
-                    ))
-                }
+    useEffect(() => {
+        store.loadIdNamePairs();
+    }, []);
+
+    function handleCreateNewList() {
+        store.createNewList();
+    }
+    let listCard = "";
+    if (store) {
+        listCard = 
+            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
+            {
+                store.idNamePairs.map((pair) => (
+                    <ListCard
+                        key={pair._id}
+                        idNamePair={pair}
+                        selected={false}
+                    />
+                ))
+            }
             </List>;
     }
     return (
-        <div id="top5-workspace">
-            <div id="workspace-edit">
-                <div id="edit-numbering">
-                    <div className="item-number"><Typography variant="h3">1.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">2.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">3.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">4.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">5.</Typography></div>
-                </div>
-                {editItems}
+        <div id="top5-list-selector">
+            <div id="list-selector-heading">
+            
+                <Typography variant="h2">All Lists</Typography>
             </div>
-        </div>
-    )
+            <div id="list-selector-list">
+                {
+                    listCard
+                }
+                <DeleteModal />
+            </div>
+        </div>)
 }
 
-export default WorkspaceScreen;
+export default AllListsScreen;

@@ -9,7 +9,7 @@ import { GlobalStoreContext } from '../store/index.js'
     
     @author McKilla Gorilla
 */
-function WorkspaceScreen() {
+function CommunityListsScreenOpen() {
     const { store } = useContext(GlobalStoreContext);
 
     let editItems = "";
@@ -43,4 +43,4 @@ function WorkspaceScreen() {
     )
 }
 
-export default WorkspaceScreen;
+export default CommunityListsScreenOpen;

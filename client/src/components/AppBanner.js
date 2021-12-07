@@ -13,6 +13,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Groups from '@mui/icons-material/Groups';
+import PersonOutline from '@mui/icons-material/PersonOutline';
+import Home from '@mui/icons-material/Home';
 
 export default function AppBanner() {
     const { auth } = useContext(AuthContext);
@@ -52,7 +55,7 @@ export default function AppBanner() {
         >
             <MenuItem onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
             <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link to='/register/'>Login As Guest</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link to='/loginGuest/'>Login As Guest</Link></MenuItem>
         </Menu>
     );
     const loggedInMenu = 
@@ -102,7 +105,10 @@ export default function AppBanner() {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}                        
                     >
-                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>T<sup>5</sup>L</Link>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/'><Home></Home></Link>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/loginGuest'><Groups></Groups></Link>
+                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/usersList/'><PersonOutline></PersonOutline></Link>
+
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
